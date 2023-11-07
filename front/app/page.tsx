@@ -1,9 +1,10 @@
 "use client";
 
+import { ClientToServerEvent, ServerToClientEvent } from "@/interface/event";
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import { Socket, io } from "socket.io-client";
 
-const socket = io(
+const socket: Socket<ServerToClientEvent, ClientToServerEvent> = io(
   process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:4000"
 );
 

@@ -10,5 +10,8 @@ export interface Story {
 }
 
 export interface ServerToClientEvent {
-  "story-update": (story: Story) => void;
+  'story-update': (story: Story) => void;
+  'story-error': (payload: { message: string }) => void;
 }
+
+export interface ClientToServerEvent {}
