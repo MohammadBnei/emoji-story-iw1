@@ -24,7 +24,9 @@ interface Story {
   steps: StoryStep[];
 }
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: true,
+})
 export class MessageGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
