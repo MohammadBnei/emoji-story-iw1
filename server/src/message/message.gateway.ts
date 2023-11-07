@@ -7,6 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
 import { Story } from '../interface/event';
+import { allEmojis } from './emoji-list';
 
 // Step ->
 //          Choix d'emojis proposé
@@ -90,5 +91,29 @@ export class MessageGateway
     } catch (err) {
       this.server.emit('story-error', err.message);
     }
+  }
+
+  generateRandomEmojies(numberOfElement: number = 8): string[] {
+    const randomEmojis: string[] = [];
+
+    while (randomEmojis.length < numberOfElement) {
+      // On récupére l'index d'un emoji aléatoire dans notre array allEmojis
+      const randomIndex = Math.floor(Math.random() * allEmojis.length);
+
+      if (
+        randomEmojis.some((emoji) => {
+          if (emoji === allEmojis[randomIndex]) {
+            return true;
+          }
+        })
+      ) {
+        continue;
+      }
+
+      // On valorise les valeurs des emojis dans le tableau créé plus tôt
+      randomEmojis.push(allEmojis[randomIndex]);
+    }
+
+    return randomEmojis;
   }
 }
