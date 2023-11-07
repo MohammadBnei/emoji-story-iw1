@@ -6,23 +6,13 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
+import { Story } from '../interface/event';
 
 // Step ->
 //          Choix d'emojis proposé
 //          Vote en temps réel
 //          Après un temps imparti, l'emoji qui a le plus de votes est enregistré
 //          -> Cycle
-
-interface StoryStep {
-  selectedEmoji: string;
-  order: number;
-  emojiCandidate: Record<string, number>;
-}
-
-interface Story {
-  storyGPT?: string;
-  steps: StoryStep[];
-}
 
 @WebSocketGateway({
   cors: true,
