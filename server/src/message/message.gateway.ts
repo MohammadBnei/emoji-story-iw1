@@ -28,13 +28,7 @@ export class MessageGateway
 
   story: Story = {
     storyGPT: '',
-    steps: [
-      {
-        selectedEmoji: '',
-        order: 1,
-        emojiCandidate: { '😞': 0, '🤜🏽': 0, '🧌': 0, ඞ: 0 },
-      },
-    ],
+    steps: [],
   };
 
   handleConnection(client: Socket, ...args: any[]) {
