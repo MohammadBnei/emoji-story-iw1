@@ -10,8 +10,10 @@ export interface Story {
 }
 
 export interface ServerToClientEvent {
-  'story-update': (story: Story) => void;
-  'story-error': (payload: { message: string }) => void;
+  "story-update": (story: Story) => void;
+  "story-error": (payload: { message: string }) => void;
 }
 
-export interface ClientToServerEvent {}
+export interface ClientToServerEvent {
+  "step-vote": (payload: { emoji: string; stepOrder: number }) => void;
+}
