@@ -73,8 +73,11 @@ export class MessageGateway
     },
   ) {
     try {
-      const currentStep = this.story.steps.at(-1);
-      const currentStepIndex = this.story.steps.length;
+      const currentStep = this.story.steps.find(
+        (step) => step.order === payload.stepOrder,
+      );
+      if (!currentStep) throw new Error('Step not found');
+      // const currentStepIndex = this.story.steps.length;
       // No step
       // emoji not found
       if (this.story.steps.length === 0)
@@ -82,12 +85,12 @@ export class MessageGateway
       if (!Object.keys(currentStep.emojiCandidate).includes(payload.emoji))
         throw new Error("You voted for an emoji that isn't a candidate?!");
 
-      const clientVote = this.clientList.get(client);
+      // const clientVote = this.clientList.get(client);
 
-      if (clientVote[currentStepIndex] === payload.emoji)
-        throw new Error(`You already voted for : ${payload.emoji}`);
+      // if (clientVote[currentStepIndex] === payload.emoji)
+      //   throw new Error(`You already voted for : ${payload.emoji}`);
 
-      clientVote[currentStepIndex] = payload.emoji;
+      // clientVote[currentStepIndex] = payload.emoji;
 
       currentStep.emojiCandidate[payload.emoji]++;
 
